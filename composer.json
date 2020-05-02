@@ -1,0 +1,20 @@
+{
+    "name": "xtrime-ru/php-extensions-toggle",
+    "description": "Toggle php extensions from cli",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Pankratov",
+            "email": "alexander@i-c-a.su"
+        }
+    ],
+    "scripts": {
+        "post-autoload-dump": [
+            "cp php-extension.sh /usr/local/bin/php-extension"
+        ],
+        "post-package-uninstall": [
+            "rm /usr/local/bin/php-extension"
+        ]
+    }
+}
