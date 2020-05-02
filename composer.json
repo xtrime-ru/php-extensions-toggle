@@ -12,9 +12,6 @@
     "scripts": {
         "post-autoload-dump": [
             "cp php-extension.sh /usr/local/bin/php-extension"
-        ],
-        "post-package-uninstall": [
-            "rm /usr/local/bin/php-extension"
         ]
     }
 }

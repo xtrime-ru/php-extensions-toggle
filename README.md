@@ -13,7 +13,12 @@ Toggle php extensions from command line
 - `service` command to restart php-fpm or apache on linux
 
 ## Install
-1. ```composer global require xtrime-ru/php-extensions-toggle```
+```
+composer create-project xtrime-ru/php-extensions-toggle && rm -rf php-extensions-toggle/
+```
+
+## Remove
+```rm /usr/local/bin/php-extension```
 
 ## Usage
 ```
