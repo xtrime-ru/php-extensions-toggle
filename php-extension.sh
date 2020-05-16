@@ -2,7 +2,14 @@
 
 EXTENSION="$1"
 [ "$2" == 'on' ] || [ "$2" == '1' ] || [ "$2" == 'enable' ] && ENABLE=true || ENABLE=false
-INI_DIR=$(php --ini | grep 'Configuration File (php.ini) Path:' | sed -E "s/.*: //")
+PHP_DIR=$(php --ini | grep 'Configuration File (php.ini) Path:' | sed -E "s~^.*: (.*/php/[^/]*).*$~\1/~")
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  #MAC_OS
+  SED_ARGS="-i '' -E";
+else
+  #OTHER
+  SED_ARGS="-i -E";
+fi
 
 if [ "$EXTENSION" == '' ]; then
   echo 'Error: no extension provided'
@@ -10,12 +17,15 @@ if [ "$EXTENSION" == '' ]; then
 fi
 
 #toogle extension line in .ini file:
-find "$INI_DIR" -type f -name "*.ini" | while read -r FILE; do
+find "$PHP_DIR" -type f -name "*.ini" | while read -r FILE; do
   if [ "$ENABLE" == true ]; then
-    sed -i '' -E "s/^;((zend_extension|extension).+$EXTENSION\.so)$/\1/g" "$FILE"
+     COMMAND=("sed $SED_ARGS s/^;((zend_extension|extension).+$EXTENSION\.so)$/\1/g $FILE")
   else
-    sed -i '' -E "s/^((zend_extension|extension).+$EXTENSION\.so)$/;\1/g" "$FILE"
+     COMMAND=("sed $SED_ARGS s/^((zend_extension|extension).+$EXTENSION\.so)$/;\1/g $FILE")
   fi
+
+$COMMAND
+
 done
 
 #restart fpm

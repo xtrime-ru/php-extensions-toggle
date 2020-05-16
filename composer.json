@@ -9,6 +9,9 @@
             "email": "alexander@i-c-a.su"
         }
     ],
+    "require": {
+        "php" : ">=5.6"
+    },
     "scripts": {
         "post-autoload-dump": [
             "cp php-extension.sh /usr/local/bin/php-extension"
