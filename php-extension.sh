@@ -19,9 +19,9 @@ fi
 #toogle extension line in .ini file:
 find "$PHP_DIR" -type f -name "*.ini" | while read -r FILE; do
   if [ "$ENABLE" == true ]; then
-     COMMAND=("sed $SED_ARGS s/^;((zend_extension|extension).+$EXTENSION\.so)$/\1/g $FILE")
+     COMMAND=("sed $SED_ARGS s/^;((zend_extension|extension).+$EXTENSION\.so\"?)$/\1/g $FILE")
   else
-     COMMAND=("sed $SED_ARGS s/^((zend_extension|extension).+$EXTENSION\.so)$/;\1/g $FILE")
+     COMMAND=("sed $SED_ARGS s/^((zend_extension|extension).+$EXTENSION\.so\"?)$/;\1/g $FILE")
   fi
 
 $COMMAND
