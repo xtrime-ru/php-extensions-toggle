@@ -31,8 +31,8 @@ done
 #restart fpm
 echo 'Restart fpm ...'
 PHP_VERSION=$(php -v | grep '^PHP ' | sed -E "s/^PHP ([0-9]\.[0-9]).*$/\1/")
-service php"$PHP_VERSION"-fpm restart 2> /dev/null
-service php-fpm restart 2> /dev/null
+/etc/init.d/php"$PHP_VERSION"-fpm restart 2> /dev/null
+/etc/init.d/php-fpm restart 2> /dev/null
 
 #restart apache
 echo 'Restart apache ...'
