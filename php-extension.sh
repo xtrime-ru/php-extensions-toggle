@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 EXTENSION="$1"
 [ "$2" == 'on' ] || [ "$2" == '1' ] || [ "$2" == 'enable' ] && ENABLE=true || ENABLE=false
