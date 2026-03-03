@@ -2,7 +2,7 @@
 
 EXTENSION="$1"
 [ "$2" == 'on' ] || [ "$2" == '1' ] || [ "$2" == 'enable' ] && ENABLE=true || ENABLE=false
-PHP_DIR=$(php --ini | grep 'Configuration File (php.ini) Path:' | sed -E "s~^.*: (.*/php/[^/]*).*$~\1/~")
+PHP_DIR=$(php --ini | grep 'Configuration File (php.ini) Path:' | sed -E "s~^.*: \"?(.*/php/[^/\"]*).*$~\1/~")
 if [[ "$OSTYPE" == "darwin"* ]]; then
   #MAC_OS
   SED_ARGS="-i '' -E";
